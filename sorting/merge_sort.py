@@ -1,25 +1,41 @@
-def merge(nums1:list, nums2:list, m:int, n:int) -> list:
-    l = 0
-    r = 0
-    final = []
-    while l < m and r < n:
-        if nums1[l] <= nums2[r]:
-            final.append(nums1[l])
-            l += 1
-        elif nums1[l] > nums2[r]:
-            final.append(nums2[r])
-            r += 1
-    while l < m:
-        final.append(a[l])
-        l += 1
-    while r < n:
-        final.append(b[r])
-        r += 1         
+def merge_sort(arr:list):
+    count_inv = 0
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_arr = arr[:mid]
+        right_arr = arr[mid:]
 
-    return final
+        merge_sort(left_arr)
+        merge_sort(right_arr)
 
-a = [1, 2, 3]
-b = [2, 5, 6]
-m = 3
-n = 3
-print(merge(a, b, m, n))
+        i = 0 # idx of left_arr
+        j = 0 # idx for right_arr
+        k = 0 # idx for sorted arr
+
+        while i < len(left_arr) and j < len(right_arr):
+            if left_arr[i] <= right_arr[j]:
+                arr[k] = left_arr[i]
+                i += 1
+            else:
+                arr[k] = right_arr[j]
+                j += 1
+            k += 1
+
+        while i < len(left_arr):
+            arr[k] = left_arr[i]
+            i += 1
+            k += 1
+        while j < len(right_arr):
+            arr[k] = right_arr[j]
+            j += 1
+            k += 1
+
+test1 = [10, 10, 10]
+test2 = [2, 4, 1, 3, 5]
+print("test case 1 before sorting: ",test1)
+merge_sort(test1)
+print("test case 1 after sorting: ",test1)
+print("\n")
+print("test case 2 before sorting: ",test2)
+merge_sort(test2)
+print("test case 2 after sorting: ",test2)

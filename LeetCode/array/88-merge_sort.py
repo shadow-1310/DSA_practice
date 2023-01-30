@@ -1,3 +1,26 @@
+# merging with extra space
+def merge(nums1:list, nums2:list, m:int, n:int) -> list:
+    l = 0
+    r = 0
+    final = []
+    while l < m and r < n:
+        if nums1[l] <= nums2[r]:
+            final.append(nums1[l])
+            l += 1
+        elif nums1[l] > nums2[r]:
+            final.append(nums2[r])
+            r += 1
+    while l < m:
+        final.append(a[l])
+        l += 1
+    while r < n:
+        final.append(b[r])
+        r += 1         
+
+    return final
+
+
+# merging without extra space (actual solution)
 def merge_sort(nums1:list[int], m:int, nums2:list[int], n: int):
     i = m + n - 1 # index for final sorted array
 
