@@ -11,5 +11,17 @@ def longest_prefix(strs):
             common_prefix += first[i]
     return common_prefix
 
+
+def longest_prefix2(strs):
+    prefix = ""
+    first = strs[0]
+    for i in range(len(first)):
+        for str in strs:
+            if i == len(str) or str[i] != first[i]:
+                return prefix
+        prefix += str[i]
+    
+    return prefix
+
 input_str = ["flower","flow","flight"]
-print(longest_prefix(input_str))
+print(longest_prefix2(input_str))
