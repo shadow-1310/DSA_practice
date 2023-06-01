@@ -27,7 +27,7 @@ def find_longest(s):
 
     return max_count
 
-
+# this is the correct approach
 def find_longest(s):
     if len(s) == 1:
         return 1
