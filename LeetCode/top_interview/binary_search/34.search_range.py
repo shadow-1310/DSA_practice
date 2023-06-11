@@ -54,35 +54,69 @@ def find_position(nums, target):
 
 
 # this is the correct function
-def find_range(nums, target):
-    #making a helper function which will iteratively search left or right interval depending on the parameter "bias"
-    def bi_search(nums, target, bias):
-        left = 0
-        right = len(nums)-1
-        index = -1
-        while left <= right:
-            mid = (left+right) // 2
+# def find_range(nums, target):
+#     #making a helper function which will iteratively bi_search left or right interval depending on the parameter "bias"
+#     def bi_search(nums, target, bias):
+#         left = 0
+#         right = len(nums)-1
+#         index = -1
+#         while left <= right:
+#             mid = (left+right) // 2
 
-            if target > nums[mid]:
-                left = mid+1
-            elif target < nums[mid]:
-                right = mid-1
-            else:
-                index = mid
-                # extensively serach in the left interval
-                if bias == 'left':
-                    right = mid-1
-                #extensively search in the right interval
-                elif bias == 'right':
-                    left = mid+1
+#             if target > nums[mid]:
+#                 left = mid+1
+#             elif target < nums[mid]:
+#                 right = mid-1
+#             else:
+#                 index = mid
+#                 # extensively serach in the left interval
+#                 if bias == 'left':
+#                     right = mid-1
+#                 #extensively bi_search in the right interval
+#                 elif bias == 'right':
+#                     left = mid+1
 
-        return index
+#         return index
         
 
-    left_position = bi_search(nums, target, bias='left')
-    right_position = bi_search(nums, target, bias='right')
+#     left_position = bi_search(nums, target, bias='left')
+#     right_position = bi_search(nums, target, bias='right')
     
-    return [left_position, right_position]
+#     return [left_position, right_position]
+
+
+# this is a revision. done on 11-06-23.
+#mistake I was doing is calculating value of mid outside the while loop
+def find_range(nums, target):
+    def bi_search(nums, target, right = True):
+        l = 0
+        r = len(nums)-1
+        index = -1
+
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] > target:
+                r = mid - 1
+            
+            elif nums[mid] < target:
+                l = mid + 1
+
+            else:
+                index = mid
+
+                if right:
+                    l = mid + 1
+
+                else:
+                    r = mid - 1
+
+        return index
+    
+
+    first = bi_search(nums, target, right=False)
+    last = bi_search(nums, target, right=True)
+
+    return [first, last]
 
 nums = [5,7,7,8,8,8]
 target = 8
@@ -91,4 +125,4 @@ nums2 = []
 target2 = 1
 
 print(find_range(nums, target))
-print(find_range(nums2, target2))
+# print(find_range(nums2, target2))

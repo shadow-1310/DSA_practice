@@ -44,6 +44,22 @@ def merge(intervals):
     return output
 
 
+# this is a revision done on 11-06-2023
+# mistake I made was trying to change the given interval in place, instead try to initialize a new output array
+def merge_interval(intervals):
+    intervals = sorted(intervals)
+    output = [intervals[0]]
+
+    for first, second in intervals[1:]:
+        if first <= output[-1][1]:
+            output[-1][1] = max(second, output[-1][1])
+
+        else:
+            output.append([first, second])
+
+    return output
+
+
 intervals1 = [[1,3],[2,6],[8,10],[15,18]]
 intervals2 = [[1,4],[4,5]]
 intervals3 = [[1,4], [0, 4]]
@@ -53,3 +69,4 @@ print(merge(intervals1))
 print(merge(intervals2))
 print(merge(intervals3))
 print(merge(intervals4))
+print(merge_interval(intervals1))

@@ -33,8 +33,53 @@ def find_substring(s, k):
 
     return res
 
+#this is a revision. it is a correct solution done on 11-06-2023.
+# mistake I did was calling the function on right and left segments, I have to exclude the character and remember the edge cases
+def longest_substring(s, k):
+    if len(s) == 0 or k > len(s):
+        return 0
+    
+    if k == 1 or k == 0:
+        return len(s)
+    
+    def find_length(s, k):
+        if len(s) == 0 or k > len(s):
+            return 0
+        
+        count_map = {}
+        for char in s :
+            if char in count_map:
+                count_map[char] += 1
+            else:
+                count_map[char] = 1
 
-s = "aaabb"
-k = 3
+        break_point = -1
+        flag = True
 
-print(find_substring(s, k))
+        for i in range(len(s)):
+            if count_map[s[i]] < k:
+                break_point = i
+            else:
+                flag = False
+        
+        if flag:
+            return 0
+
+        if break_point == -1:
+            return len(s)
+            
+        max_left = find_length(s[:break_point], k)
+        max_right = find_length(s[break_point+1:], k)
+
+        return max(max_left, max_right)
+    
+    return find_length(s, k)
+
+s1 = "aaabb"
+k1 = 3
+
+s2 = "bbaaacbd"
+k2 = 3
+
+print(find_substring(s1, k1))
+print(longest_substring(s2, k2))

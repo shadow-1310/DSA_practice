@@ -59,6 +59,38 @@ def is_valid_sudoku(board):
 
     return True
 
+# this is a revision. done on 11-06-2023
+# although it is passing the testcases. the main approach should be initialize hashmaps not lists and check also if 0<val<9
+def is_valid(board):
+    cols = [[] for i in range(9)]
+    rows = [[] for i in range(9)]
+    squares = [[[] for _ in range(3)] for _ in range(3)]
+
+    for i in range(9):
+        for j in range(9):
+            val = board[i][j]
+
+            if val == ".":
+                continue
+
+            else:
+                if val in rows[i]:
+                    return False
+                else:
+                    rows[i].append(val)
+
+                if val in cols[j]:
+                    return False
+                else:
+                    cols[j].append(val)
+
+                if val in squares[i//3][j//3]:
+                    return False
+                else:
+                    squares[i//3][j//3].append(val)
+
+    return True
+
 
 board =  [["5","3",".",".","7",".",".",".","."]
 ,["6",".",".","1","9","5",".",".","."]
@@ -71,3 +103,4 @@ board =  [["5","3",".",".","7",".",".",".","."]
 ,[".",".",".",".","8",".",".","7","9"]]
 
 print(is_valid_sudoku(board))
+print(is_valid(board))
