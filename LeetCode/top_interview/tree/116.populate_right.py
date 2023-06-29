@@ -7,6 +7,9 @@ class Node:
         self.right = right
         self.next = next
 """
+
+# correct solution based on BFS
+# done on 24-06-2023
 from collections import deque
 class Solution:
     def connect(self, root):
