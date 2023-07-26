@@ -22,3 +22,22 @@ class Solution:
             
 s = Solution()
 print(s.combine(4, 2))
+
+
+#this is a revision done on 26-07-2023
+class Solution:
+    def combine(self, n, k):
+        res = []
+        subset = []
+        def dfs(start, subset):
+            if len(subset) == k:
+                res.append(subset.copy())
+                return 
+            if start > n:
+                return 
+
+            for i in range(start+1, n+1):
+                dfs(i, subset.append(i))
+        
+        dfs(0, [])
+        return 
