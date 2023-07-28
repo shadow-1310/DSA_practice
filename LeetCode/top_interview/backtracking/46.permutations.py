@@ -51,6 +51,31 @@ class Solution:
         backtrack([], used)
         return res
 
+# this is a revision done on 26-07-2023
+
+class Solution:
+    def permute(self, nums):
+        res = []
+        used = [False for i in range(len(nums)+1)]
+
+        def dfs(curr, used):
+            if len(curr) == len(nums):
+                res.append(curr.copy())
+                return
+            if len(curr) > len(nums):
+                return
+
+            for j in range(len(nums):
+                if not used[j]: 
+                    curr.append(nums[j])
+                    used[j] = True
+                    dfs(curr, used)
+                    used[j] = False
+                    curr.pop()
+
+        dfs([], used)
+        return res
+
 
 s = Solution()
 arr = [1,2,3]
