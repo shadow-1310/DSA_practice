@@ -17,3 +17,22 @@ class Solution:
             dfs(i+1)
         dfs(0)
         return res
+
+
+# this is a revision
+class Solution:
+    def subsets(self, nums):
+        res = []
+
+        def dfs(index, curr):
+            if index >= len(nums):
+                res.append(curr.copy())
+                return res
+
+            curr.append(nums[index])
+            dfs(index+1, curr)
+            curr.pop()
+            dfs(index+1, curr)
+
+        dfs(0, [])
+        return res

@@ -22,3 +22,29 @@ class Solution:
 
         backtrack(0, [])
         return res
+    
+
+#this is a revision done on 28-07-2023
+#correct solution
+class Solution:
+    def subsetsWithDup(self, nums):
+        nums.sort()
+        res = []
+
+        def dfs(index, curr):
+            if index >= len(nums):
+                res.append(curr.copy())
+                return
+
+            curr.append(nums[index])
+            dfs(index+1, curr)
+            curr.pop()
+
+            while index+1 <len(nums) and nums[index] == nums[index+1]:
+                index += 1
+
+            dfs(index+1, curr)
+
+        dfs(0, [])
+        return res
+    
