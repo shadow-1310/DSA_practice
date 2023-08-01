@@ -29,3 +29,29 @@ class Solution:
                 res.append(level)
 
         return res
+
+#this is a revision done on 01-08-2023
+#correct solution
+from collections import deque
+class Solution:
+    def levelOrder(self, root):
+        res = []
+        stack = deque()
+        stack.append(root)
+        if not root:
+            return res
+
+        while stack:
+            level = []
+            for i in range(len(stack)):
+                node = stack.popleft()
+
+                if node:
+                    level.append(node.val)
+                    stack.append(node.left)
+                    stack.append(node.right)
+
+            if level:
+                res.append(level)
+            
+        return res

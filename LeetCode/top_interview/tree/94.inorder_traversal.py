@@ -70,3 +70,21 @@ class Solution:
             curr = curr.right
 
         return res
+
+
+#this is a revision
+#done on 30-07-2023
+class Solution:
+    def inorderTraversal(self, root):
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+
+            dfs(node.left)
+            res.append(node.val)
+            dfs(node.right)
+            
+        dfs(root)
+        return res

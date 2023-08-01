@@ -31,5 +31,38 @@ class Solution:
         return res
     
 
+# this is a revision done 29-07-2023
+#correct solution
+class Solution:
+    def partition(self, s):
+        res = []
+
+        def is_palindrome(start, end):
+            if start == end:
+                return True
+
+            while start <= end:
+                if s[start] != s[end]:
+                    return False
+                start += 1
+                end -= 1
+            return True
+
+        def dfs(start, curr):
+            if start >= len(s):
+                res.append(curr.copy())
+                return 
+            
+            for end in range(start, len(s)):
+                string = s[start:end+1]
+
+                if is_palindrome(start, end):
+                    curr.append(string)
+                    dfs(end+1, curr)
+                    curr.pop()
+
+        dfs(0, [])
+        return res
+
 s = Solution()
 print(s.partition('aab'))

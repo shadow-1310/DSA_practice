@@ -19,3 +19,20 @@ class Solution:
         postorder(root)
 
         return res
+
+
+#it is a revision done on 30-07-2023
+class Solution:
+    def postorderTraversal(self, root):
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+
+            dfs(node.left)
+            dfs(node.right)
+            res.append(node.val)
+
+        dfs(root)
+        return res

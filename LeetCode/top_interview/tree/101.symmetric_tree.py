@@ -23,3 +23,19 @@ class Solution:
             return (is_same(p.left, q.right) and is_same(p.right, q.left))
         
         return is_same(root.left, root.right)
+
+
+class Solution:
+    def isSymmetric(self, root):
+        def check_sym(p, q):
+            if not p and not q:
+                return True
+            if not p or not q or p.val != q.val:
+                return False
+
+            return check_sym(p.left, q.right) and check_sym(p.right, q.left)
+
+        if not root:
+            return True
+
+        return check_sym(root.left, root.righ)

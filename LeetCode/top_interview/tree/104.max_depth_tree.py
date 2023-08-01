@@ -31,3 +31,12 @@ class Solution:
                 stack.append([node.rigth, depth+1])
             
             return res
+
+#this is a revision done on 30-07-2023
+#tough to figure out the exact approach
+class Solution:
+    def maxDepth(self, root):
+        if not root:
+            return 0
+
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))

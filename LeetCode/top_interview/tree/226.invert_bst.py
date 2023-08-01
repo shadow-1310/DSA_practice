@@ -42,3 +42,24 @@ class Solution:
         self.invertTree(root.right)
 
         return root
+
+
+#this is a revision done on 31-07-2023
+#correct solution
+class Solution:
+    def invertTree(self, root):
+        def make_invert(node):
+            if not node:
+                return
+
+            temp = node.left
+            node.left = node.right
+            node.right = temp
+            
+            make_invert(node.left)
+            make_invert(node.right)
+
+        make_invert(root)
+        return root
+
+        
