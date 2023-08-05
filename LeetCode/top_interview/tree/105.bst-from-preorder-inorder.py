@@ -19,3 +19,19 @@ class Solution:
         node.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
 
         return node
+
+
+#this is a revision done 05-08-2023
+
+class Solution:
+    def buildTree(self, preorder, inorder):
+        if not preorder or not inorder:
+            return 
+
+        mid = inorder.index(preorder[0])
+        node = TreeNode(preorder[0])
+
+        node.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        node.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
+
+        return node
