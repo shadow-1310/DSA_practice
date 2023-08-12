@@ -21,3 +21,21 @@ class Solution:
             return node
         
         return make_tree(0,len(nums)-1)
+
+
+class Solution:
+    def sortedArrayToBST(self, nums):
+        def bst(left, right):
+            if left > right:
+                return None
+
+            mid = (left+right)//2
+            node = TreeNode(nums[mid])
+
+            node.left = bst(left, mid-1)
+            node.right = bst(mid+1, right)
+
+            return node
+
+        return bst(0, len(nums)-1)
+

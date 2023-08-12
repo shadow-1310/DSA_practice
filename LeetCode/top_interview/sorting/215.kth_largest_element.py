@@ -1,6 +1,7 @@
 # this is the first attempt on 01-06-2023
 # this is the correct solution and passes Leetcode tescases
 # it is using quicksort algorithm with Hoare partitioning scheme, (Neetcode uses Lomuto scheme which I found difficult)
+import heapq
 
 def find_kth_largest(nums, k):
     if len(nums) == 1:
@@ -39,6 +40,16 @@ def find_kth_largest(nums, k):
     desired = len(nums) - k
     
     return quicksort(nums, left, right)
+
+class Solution:
+    def findKthLargest(self, nums, k):
+        nums = [-n for n in nums]
+        heapq.heapify(nums)
+        count = 0
+        while nums:
+            heapq.heappop(nums)
+            count += 1:wq
+
 
 
 nums = [3,2,1,5,6,4]

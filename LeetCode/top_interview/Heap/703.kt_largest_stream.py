@@ -19,3 +19,9 @@ class KthLargest:
             heapq.heappop(self.heap)
 
         return self.heap[0]
+
+
+class KthLargest:
+    def __init__(self, k, nums):
+        self.h = [-n for n in nums]
+        heapq.heapify(self.h)
