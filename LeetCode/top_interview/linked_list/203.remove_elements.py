@@ -17,3 +17,17 @@ class Solution:
             tail = tail.next
 
         return dummy.next
+
+
+class Solution:
+    def removeElements(self, head, val):
+        dummy = ListNode(val = 0, next = head)
+        tail = dummy
+
+        while tail and tail.next:
+            while tail.next and tail.next.val == val:
+                tail.next = tail.next.next
+
+            tail = tail.next
+
+        return dummy.next

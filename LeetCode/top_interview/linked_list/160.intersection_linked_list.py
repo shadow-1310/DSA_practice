@@ -21,3 +21,19 @@ class Solution:
             headB = headB.next
 
         return None
+
+
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        keys = set()
+
+        while headA:
+            keys.add(headA)
+            headA = headA.next
+
+        while headB:
+            if headB in keys:
+                return headB
+            headB = headB.next
+
+        return False
