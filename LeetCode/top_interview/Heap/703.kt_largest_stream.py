@@ -20,8 +20,17 @@ class KthLargest:
 
         return self.heap[0]
 
-
+#it is done on 29-08-2023 and correct solution
 class KthLargest:
     def __init__(self, k, nums):
-        self.h = [-n for n in nums]
+        self.h = nums
         heapq.heapify(self.h)
+        self.k = k
+
+    def add(self, val):
+        heapq.heappush(self.h, val)
+
+        while len(self.h) > self.k:
+            heapq.heappop(self.h)
+
+        return self.h[0]

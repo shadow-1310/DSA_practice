@@ -31,3 +31,34 @@ class Solution:
                 heapq.heappush(freq, new)
 
         return t
+
+
+class Solution:
+    def leastInterval(self, tasks, n):
+        counts = {}
+        for t in tasks:
+            if t in counts:
+                counts[t] += 1
+            else:
+                counts[t] = 1
+
+        freq = [-n for n in counts.values()]
+        heapq.heapify(freq)
+        q = deque()
+        t = 0
+
+        while q or freq:
+            t += 1
+            if freq:
+                task = heapq.heappop(freq)
+                task += 1
+                if task:
+                    q.append([task, t+n])
+
+            if q and q[0][1] == t:
+                new_task = q.popleft()[0]
+                heapq.heappush(freq, new_task)
+
+        return t
+
+
