@@ -46,3 +46,8 @@ class Solution:
         left.next = left.next.next
 
         return dummy.next
+
+
+class Solution:
+    def removeNthFromEnd(self, head, n):
+
