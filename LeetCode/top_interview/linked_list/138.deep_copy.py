@@ -24,3 +24,24 @@ class Solution:
             tail = tail.next
 
         return copy_map[head]
+
+
+class Solution:
+    def copyRandomList(self, head):
+        org = head
+        keys = {None:None}
+
+        while org:
+            copy = Node(org.val)
+            keys[org] = copy
+            org = org.next
+
+        org = head
+
+        while org:
+            keys[org].next = keys[org.next]
+            keys[org].random = keys[org.random]
+
+            org = org.next
+
+        return keys[head]

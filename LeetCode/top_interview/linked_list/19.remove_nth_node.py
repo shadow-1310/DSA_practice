@@ -47,7 +47,23 @@ class Solution:
 
         return dummy.next
 
-
+#this is a revision done on 02-09-2023, working for all test cases of Leetcode
 class Solution:
     def removeNthFromEnd(self, head, n):
+        dummy = ListNode()
+        dummy.next = head
+        tail = dummy
+
+        while n > 0:
+            head = head.next
+            n -= 1
+
+        while head:
+            tail = tail.next
+            head = head.next
+
+        tail.next = tail.next.next
+
+        return dummy.next
+
 
