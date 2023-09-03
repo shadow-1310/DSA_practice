@@ -41,6 +41,23 @@ def intersection2(nums1, nums2):
 
     return result
 
+#this is a revision done on 03-09-2023,correct solution
+class Solution:
+    def intersect(self, nums1, nums2):
+        hashmap = {}
+        for num in nums1:
+            if num in hashmap:
+                hashmap[num] += 1
+            else:
+                hashmap[nums] = 1
+
+        res = []
+
+        for num in nums2 and hashmap[num] > 0:
+            if num in hashmap:
+                res.append(num)
+                hashmap[num] -= 1
+        return res
 
 nums1 = [1, 2]
 nums2 = [2, 1, 3]
