@@ -37,3 +37,37 @@ class Solution:
 
             first = temp1
             second = temp2
+
+
+#this is a revision done on 02-09-2023
+class Solution:
+    def reorderList(self, head):
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        tail = None
+
+        while slow:
+            temp = slow.next
+            slow.next = tail
+            tail = slow
+            slow = temp
+
+        left = head
+        right = tail
+
+        while left and right:
+            temp_left = left.next
+            temp_right = right.next
+
+            left.next = right
+            right.next = temp_left
+
+            left = temp_left
+            right = temp_right
+
+        return head
