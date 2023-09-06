@@ -75,6 +75,29 @@ def find_longest_ss(s):
     
     return max_count
 
+
+#this is a revision done on 06-09-2023, mistake made was putting the current len calculation inside the if loop
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        if len(s) == 1:
+            return 1
+        left = 0
+        right = left
+        max_len = 0
+        exist = {}
+
+        while right < len(s):
+            if s[right] in exist and exist[s[right]] >= left:
+                left = exist[s[right]] + 1
+            
+            curr = right - left + 1
+            exist[s[right]] = right
+            max_len = max(curr, max_len)
+            right += 1
+
+        return max_len
+
+
 s = "abcabcbb"
 s2 = "bbbbb"
 s3 = "pwwkew"

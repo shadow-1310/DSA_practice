@@ -35,6 +35,40 @@ def find_longest(s, k):
 
     return res
 
+
+#this is a revision done on 06-09-2023
+class Solution:
+    def characterReplacement(self, s, k):
+        def get_maxfreq(hashmap):
+            maxfreq = 0
+            for key in hashmap:
+                maxfreq = max(maxfreq, hashmap[key])
+
+            return maxfreq
+
+        left = 0
+        right = left
+        count = {}
+        maxx = 0
+        while left <= right and right < len(s):
+            if s[right] in count:
+                count[s[right]] += 1
+            else:
+                count[s[right]] = 1
+
+            tot = right - left + 1
+            freq = get_maxfreq(count)
+            if tot - freq <= k:
+                maxx = max(tot, maxx)
+
+            else:
+                count[s[left]] -= 1
+                left += 1
+
+            right += 1
+
+        return maxx
+
 s = "ABAB"
 k = 2
 
