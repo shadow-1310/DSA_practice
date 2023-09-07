@@ -81,6 +81,53 @@ def checkInclusion(s1: str, s2: str) -> bool:
             l += 1
         return matches == 26
 
+
+#this is a revision done on 07-09-2023, it is working fine in LC all test cases
+#time complexity is O(s1 + 26*s2) and it is less optimized than previous approach
+class Solution:
+    def checkInclusion(self, s1, s2):
+        if len(s1) > len(s2):
+            return False
+
+        map_s1 = [0]*26
+        map_s2 = [0]*26
+        for i in range(len(s1)):
+            idx1 = ord(s1[i]) - ord('a')
+            idx2 = ord(s2[i]) - ord('a')
+            map_s1[idx1] += 1
+            map_s2[idx2] += 1
+
+        def check_match(m1, m2):
+            for i in range(len(m1)):
+                if m1[i] != m2[i]:
+                    return False
+
+            return True
+
+        left = 0
+        right = left + len(s1) - 1
+
+        while left <= right and right < len(s2):
+            if check_match(map_s1, map_s2):
+                return True
+
+            else:
+                if right + 1 < len(s2):
+                    old_char_idx = ord(s2[left]) - ord('a')
+                    new_char_idx = ord(s2[right+1]) - ord('a')
+                    map_s2[old_char_idx] -= 1
+                    map_s2[new_char_idx] += 1
+
+                left += 1
+                right += 1
+
+        return False
+
+
+
+
+
+
 s1 = "ab"
 s2 = "eidbaooo"
 
