@@ -16,5 +16,25 @@ def pascal_triangle(numRows):
     return triangle
 
 
+#this is a revision done on 10-09-2023, working on all testcases of LC
+class Solution:
+    def generate(self, numRows):
+        res = []
+        for i in range(numRows):
+            row = []
+            for j in range(i+1):
+                if j == 0 or j == i:
+                    row.append(1)
+
+                else:
+                    if i > 0:
+                        row.append(res[i-1][j-1] + res[i-1][j])
+
+            res.append(row)
+
+        return res
+
+
+
 rows = 7
 print(pascal_triangle(rows))

@@ -58,6 +58,33 @@ def top_frequent(nums, k):
 
         if len(res) == k:
             return res
+
+
+#this is a revision done on 07-09-2023, working ok on LC testcases
+class Solution:
+    def topKFrequent(self, nums, k):
+        count = {}
+        res = []
+
+        for num in nums:
+            if num in count:
+                count[num] += 1
+
+            else:
+                count[num] = 1
+
+        bucket_list = [[] for i in range(len(nums)+1)]
+        for key in count:
+            bucket_list[count[key]].append(key)
+
+        for i in range(len(bucket_list)-1, -1, -1):
+            if len(bucket_list[i]) != 0:
+                for num in bucket_list[i]:
+                    res.append(num)
+                    if len(res) == k:
+                        return res
+
+        return res
         
 
 
