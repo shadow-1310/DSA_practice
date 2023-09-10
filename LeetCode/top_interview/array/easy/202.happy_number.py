@@ -23,4 +23,24 @@ def happy_number(n):
             return False
 
 
+#this is a revision done on 0-09-2023, working on all testcases of LC
+class Solution:
+    def isHappy(self, n):
+        loop = set()
+        while True:
+            loop.add(n)
+            square = 0
+            temp = n
+            while temp > 0:
+                square += (temp % 10)**2
+                temp = temp // 10
+
+            if square == 1:
+                return True
+            elif square in loop:
+                return False
+
+            n = square
+
+
 print(happy_number(19))

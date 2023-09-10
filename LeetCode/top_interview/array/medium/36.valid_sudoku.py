@@ -92,6 +92,45 @@ def is_valid(board):
     return True
 
 
+#this is a revision done on 10-09-2023, working on LC testcases
+#this approach doesnot use an extra space to check duplicate value instead uses the original board
+class Solution:
+    def isValidSudoku(self, board):
+        rows = len(board)
+        cols = len(board[0])
+        for i in range(rows):
+            for j in range(cols):
+                ele = board[i][j]
+                if ele == ".":
+                    continue
+
+                if int(ele) < 1 or int(ele) > 9:
+                    return False
+                
+                #checking the same row
+                for col in range(len(board[i])):
+                    if board[i][col] == ele and col != j:
+                        return False
+
+                #checking the same column
+                for row in range(rows):
+                    if ele == board[row][j] and row != i:
+                        return False
+                
+                #checking the 3*3 box
+                row_min = (i // 3) * 3
+                row_max = row_min + 3
+                col_min = (j // 3) * 3
+                col_max = col_min + 3
+
+                for row in range(row_min, row_max):
+                    for col in range(col_min, col_max):
+                        if ele == board[row][col] and i != row and j != col:
+                            return False
+
+        return True
+
+
 board =  [["5","3",".",".","7",".",".",".","."]
 ,["6",".",".","1","9","5",".",".","."]
 ,["6","9","8",".",".",".",".","6","."]
