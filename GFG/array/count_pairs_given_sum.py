@@ -23,6 +23,25 @@ def count_pair(arr:list, n:int, k:int) -> int:
                 count -= 1
     return count // 2
 
+
+#this is a revision done on 12-09-2023, working on all testcases of GFG
+class Solution:
+    def getPairsCount(self, arr, n, k):
+        hashmap = {}
+        count = 0
+
+        for num in arr:
+            if num in hashmap:
+                count += hashmap[num]
+
+            if k-num in hashmap:
+                hashmap[k-num] += 1
+
+            else:
+                hashmap[k-num] = 1
+
+        return count
+
 n = 4
 k = 2
 a = [1, 1, 1, 1]

@@ -37,3 +37,20 @@ class Solution:
             idx += 1
             i += 1
 
+#this is two pointer approach, time complexity O(1) but failing in time limit for GFG testcase-1112
+class Solution:
+    def Rearrange(self, n ,arr):
+        left = 0
+        curr = left
+
+        while curr < n:
+            if arr[curr] >= 0:
+               curr += 1 
+            else:
+                for i in range(curr, left, -1):
+                    arr[i-1], arr[i] = arr[i], arr[i-1]
+
+                curr += 1
+                left += 1
+
+
