@@ -39,6 +39,24 @@ class Solution:
             two = temp
         
         return one
+
+
+#this is a revision done on 12-09-2023, working ok on all LC testcases
+class Solution:
+    def climbStairs(self, n):
+        if n == 1:
+            return 1
+        last = 1
+        penulti = 1
+
+        for i in range(n-1):
+            temp = last
+            last = penulti
+            penulti = temp + last
+
+        return penulti
+
+
     
 
 s =Solution()

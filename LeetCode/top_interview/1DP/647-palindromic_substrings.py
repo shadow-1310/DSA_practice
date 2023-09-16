@@ -19,5 +19,35 @@ class Solution:
 
         return count
 
+
+class Solution:
+    def countSubstrings(self, s):
+        count = 0
+
+        for i in range(len(s)):
+            count += 1
+            left = i - 1
+            right = i + 1
+            while i >= 0  and right < len(s):
+                if s[left] != s[right]:
+                    break
+                else:
+                    count += 1
+                    left -= 1
+                    right += 1
+
+        for i in range(len(s)):
+            left = i
+            right = i + 1
+            while left >= 0 and right < len(s):
+                if s[left] != s[right]:
+                    break
+                else:
+                    count += 1
+                    left -= 1
+                    right += 1
+
+        return count
+
 s = Solution()
 print(s.countSubstrings('abc'))

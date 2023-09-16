@@ -38,3 +38,24 @@ class Solution:
         for i in range(1, N):
             lcm_of_array = lcm(A[i], lcm_of_array)
         return lcm_of_array % 1000000007
+
+
+# this is a revision done on 12-09-2023, but not working for GFG testcases
+class Solution:
+    def lcmOfArray(self, N, A):
+        def get_gcd(a, b):
+            if not a or not b:
+                return a if not b else b
+
+            else:
+                smaller = min(a, b)
+                bigger = max(a, b)
+
+                return get_gcd(smaller, bigger % smaller)
+
+        curr = A[0] 
+
+        for i in range(1, N):
+            curr = (curr * A[i]) // (get_gcd(curr, A[i]) / 1000000007)
+
+        return curr 

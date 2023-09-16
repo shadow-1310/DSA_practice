@@ -31,6 +31,50 @@ class Solution:
 
         return res 
 
+
+class Solution:
+    def longestPalindrome(self, s):
+        res = s[0]
+        curr = 0
+        max_count = 0
+
+        for i in range(len(s)):
+            left = i - 1
+            right = i + 1
+            curr = 1
+
+            while left >= 0 and right < len(s):
+                if s[left] != s[right]:
+                    break
+
+                else:
+                    curr += 2
+                    max_count = max(curr, max_count)
+                    if curr == max_count:
+                        res = s[left: right + 1]
+                    left -= 1
+                    right += 1
+
+        for i in range(len(s)):
+            left = i
+            right = i + 1
+            curr = 1
+
+            while left >= 0 and right < len(s):
+                if s[left] != s[right]:
+                    break
+
+                else:
+                    curr += 2
+                    max_count = max(curr, max_count)
+                    if curr == max_count:
+                        res = s[left: right + 1]
+                    left -= 1
+                    right += 1
+        
+        return res
+
+
 s = Solution()
 s2 = "cbbd"
 print(s.longestPalindrome('babad'))
