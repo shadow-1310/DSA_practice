@@ -32,6 +32,7 @@ class Solution:
         return res 
 
 
+#this is a revision done on 16-09-2023, working on all LC testcases
 class Solution:
     def longestPalindrome(self, s):
         res = s[0]
