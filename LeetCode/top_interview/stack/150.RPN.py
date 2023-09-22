@@ -33,6 +33,35 @@ def eval_rpn(tokens):
     return stack[-1]
 
 
+class Solution:
+    def evalRPN(self, tokens):
+        operators = ('+', '-', '*', '/')
+        stack = []
+
+        for tok in tokens:
+            if tok not in operators:
+                stack.append(int(tok))
+            else:
+                v2 = stack.pop()
+                v1 = stack.pop()
+
+                if tok == '+':
+                    new_val = v1 + v2
+
+                elif tok == '-':
+                    new_val = v1 - v2
+
+                elif tok == '*':
+                    new_val = v1 * v2
+                
+                elif tok == '/':
+                    new_val = int(v1 / v2)
+
+                stack.append(new_val)
+
+        return stack[-1]
+
+
 tokens1 = ["2","1","+","3","*"]
 tokens2 = ["4","13","5","/","+"]
 tokens3 = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]

@@ -14,6 +14,25 @@ def req_days(temperatures):
     return res
 
 
+#this is a revision done on 2023-09-21
+class Solution:
+    def dailyTemperatures(self, temperatures):
+        res = [0]*len(temperatures)
+        stack = []
+
+        for index, temp in enumerate(temperatures):
+            while stack and temp > stack[-1][0]:
+                stack_temp, stack_index = stack.pop()
+                days = index - stack_index
+                res[stack_index] = days
+
+            stack.append([temp, index])
+
+        return res
+
+
+
+
 temperatures1 = [73,74,75,71,69,72,76,73]
 temperatures2 = [30,40,50,60]
 
