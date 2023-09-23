@@ -32,6 +32,34 @@ def find_rate(piles, h):
     return rate
 
 
+#this is a revision done on 2023-09-23, working on LC testcases
+class Solution:
+    def minEatingSpeed(self, piles, h):
+        max_pile = max(piles)
+        left = 1
+        right = max_pile
+        if h == len(piles):
+            return max_pile
+        min_rate = max_pile
+
+        while left <= right:
+            mid = (left+right) // 2
+            req_hour = 0
+            for pile in piles:
+                req_hour += ceil(pile/mid)
+
+            if req_hour <= h:
+                min_rate = min(min_rate, mid)
+                right = mid - 1
+
+            else:
+                left = mid + 1
+
+        return min_rate
+
+
+
+
 piles = [3,6,7,11]
 h = 8
 
