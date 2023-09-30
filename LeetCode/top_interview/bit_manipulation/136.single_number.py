@@ -24,6 +24,16 @@ class Solution:
         for key in count:
             if count[key] == 1:
                 return key
+
+#this solutio is done on 2023-09-30
+#it uses O(1) space unlike above
+class Solution:
+    def singleNumber(self, nums):
+        res = 0
+        for num in nums:
+            res ^= num
+
+        return res
         
 nums = [4,1,2,1,2]
 print(single_number(nums))
