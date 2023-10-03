@@ -45,3 +45,21 @@ class Solution:
             org = org.next
 
         return keys[head]
+
+
+#revision on 03-10-2023, even I used ListNode class to initialize still it worked
+class Solution:
+    def copyRandomList(self, head):
+        copy_map = {None:None}
+        curr = head
+        while curr:
+            copy_map[curr] = ListNode(curr.val)
+            curr = curr.next
+
+        curr = head
+        while curr:
+            copy_map[curr].next = copy_map[curr.next]
+            copy_map[curr].random = copy_map[curr.random]
+            curr = curr.next
+
+        return copy_map[head]

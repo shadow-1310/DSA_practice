@@ -12,4 +12,15 @@ def find_duplicate(nums):
 
 nums = [1,3,4,2,2]
 
+
+class Solution:
+    def containsDuplicate(self, nums):
+        visited = set()
+        for num in nums:
+            if num in visited:
+                return True
+            visited.add(num)
+
+        return False
+
 print(find_duplicate(nums))

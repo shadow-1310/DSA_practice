@@ -66,4 +66,20 @@ class Solution:
 
         return dummy.next
 
+#revised on 03-10-2023
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        dummy = ListNode()
+        dummy.next = head
+        bait = head
+        tail = dummy
+        for i in range(n):
+            bait = bait.next
 
+        while bait:
+            bait = bait.next
+            tail = tail.next
+
+        tail.next = tail.next.next
+
+        return dummy.next
