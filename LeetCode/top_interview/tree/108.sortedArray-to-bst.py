@@ -39,3 +39,18 @@ class Solution:
 
         return bst(0, len(nums)-1)
 
+
+#revision on 04-10-2023, used bit manipulation to get mid element
+class Solution:
+    def sortedArrayToBST(self, nums):
+        def dfs(l, r):
+            if l > r:
+                return None
+            mid = (l+r) >> 1
+            node = TreeNode(nums[mid])
+            node.left = dfs(l, mid-1)
+            node.right = dfs(mid+1, r)
+
+            return node
+
+        return dfs(0, len(nums))

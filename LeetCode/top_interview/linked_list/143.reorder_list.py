@@ -71,3 +71,36 @@ class Solution:
             right = temp_right
 
         return head
+
+
+#this revision is done on 03-10-2023
+class Solution:
+    def reorderList(self, head):
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev = None
+        while slow:
+            temp = slow.next
+            slow.next = prev
+            prev = slow
+            slow = temp
+
+        right = prev
+        left = head
+
+        while left and right:
+            temp_left = left.next
+            temp_right = right.next
+
+            left.next = right
+            right.next = temp_left
+
+            left = temp_left
+            right = temp_right
+
+        return head

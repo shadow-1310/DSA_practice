@@ -60,7 +60,6 @@ class Solution:
                        level.append(node.val)
                        q.append(node.left)
                        q.append(node.right)
-                else
 
                 else:
                     node = q.pop()
@@ -75,3 +74,36 @@ class Solution:
             left = ~left
         return res
 
+
+
+#revision done on 04-10-2023, got wasted time in debugging, 
+#the error was we can't reverse a boolean using ~, we have to use 'not' in front
+class Solution:
+    def zigzagLevelOrder(self, root):
+        res = []
+        q = deque()
+        q.append(root)
+        dir_left = True
+
+        while q:
+            level = []
+            for i in range(len(q)):
+                if dir_left:
+                    node = q.popleft()
+                    if node:
+                        level.append(node.val)
+                        q.append(node.left)
+                        q.append(node.right)
+
+                else:
+                    node = q.pop()
+                    if node:
+                        level.append(node.val)
+                        q.appendleft(node.right)
+                        q.appendleft(node.left)
+
+            dir_left = not dir_left
+            if level:
+                res.append(level)
+
+        return res

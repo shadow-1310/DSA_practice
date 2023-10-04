@@ -65,3 +65,19 @@ class Solution:
                 return True
 
         return False
+
+
+#revised on 03-10-2023
+class Solution:
+    def hasCycle(self, head):
+        if not head:
+            return False
+        slow = head
+        fast = slow.next
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+
+        return False

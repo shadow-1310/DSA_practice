@@ -67,3 +67,19 @@ class Solution:
             return node.val > lb and node.val < ub and dfs(node.left, lb, node.val) and dfs(node.right, node.val, ub)
 
         return dfs(root, float('-inf'), float('inf'))
+
+
+#revision on 04-10-2023
+class Solution:
+    def isValidBST(self, root):
+        def dfs(node, lb, ub):
+            if not node:
+                return True
+            
+            q_self = node.val < ub and node.val > lb
+            q_left = dfs(node.left, lb, node.val) if node.left else True
+            q_right = dfs(node.right, node.val, ub) if node.right else True
+
+            return q_self and q_left and q_right
+
+        return dfs(root, float('-inf'), float('inf'))

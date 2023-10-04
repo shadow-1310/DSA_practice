@@ -40,3 +40,13 @@ class Solution:
             return 0
 
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+
+#this revision is done on 04-10-2023, although not efiicient as neetcode solution
+class Solution:
+    def maxDepth(self, root):
+        def dfs(node, h):
+            if not node:
+                return h
+            return max(dfs(node.left, h+1), dfs(node.right, h+1))
+        return dfs(root,0)

@@ -39,3 +39,21 @@ class Solution:
             return True
 
         return check_sym(root.left, root.righ)
+
+
+#revision done on 04-0-2023
+class Solution:
+    def isSymmetric(self, root):
+        def dfs(p, q):
+            if not p and not q:
+                return True
+            if (p and not q) or (not p and q):
+                return False
+
+            q_self = (p.val == q.val)
+            q_left = dfs(p.left, q.right)
+            q_right = dfs(p.right, q.left)
+
+            return q_self and q_left and q_right
+
+        return dfs(root.left, root.right) if root else True

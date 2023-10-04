@@ -31,3 +31,18 @@ class Solution:
             tail = tail.next
 
         return dummy.next
+
+
+class Solution:
+    def removeElements(self, head, val):
+        dummy = Node()
+        dummy.next = head
+        curr = dummy
+
+        while curr and curr.next:
+            while curr.next.val == val:
+                curr.next = curr.next.next
+
+            curr = curr.next
+
+        return dummy.next

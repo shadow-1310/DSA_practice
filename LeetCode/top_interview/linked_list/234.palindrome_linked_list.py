@@ -126,3 +126,33 @@ class Solution:
             head = head.next
 
         return True
+
+
+#this revision is done on 03-10-2023
+class Solution:
+    def isPalindrome(self, head):
+        slow = head
+        fast = head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        right = slow.next
+        prev = None
+
+        while right:
+            temp = right.next
+            right.next = prev
+            prev = right
+            right = temp
+
+        right = prev
+        while head and right:
+            if head.val != right.val:
+                return False
+
+            head = head.next
+            right = right.next
+
+        return True

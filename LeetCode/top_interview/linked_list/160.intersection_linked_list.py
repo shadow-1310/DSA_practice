@@ -37,3 +37,19 @@ class Solution:
             headB = headB.next
 
         return False
+    
+
+#this revision is done on 03-0-2023
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        visited = set()
+        while headA:
+            visited.add(headA)
+            headA = headA.next
+
+        while headB:
+            if headB in visited:
+                return headB
+            headB = headB.next
+
+        return None

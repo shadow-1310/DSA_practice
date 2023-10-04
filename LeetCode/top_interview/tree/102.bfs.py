@@ -55,3 +55,25 @@ class Solution:
                 res.append(level)
             
         return res
+
+
+#revision done on 04-10-2023
+class Solution:
+    def levelOrder(self, root):
+        res = []
+        q = deque()
+        q.append(root)
+        while q:
+            level = []
+            for i in range(len(q)):
+                node = q.popleft()
+                if not node:
+                    continue
+                level.append(node.val)
+                q.append(node.left)
+                q.append(node.right)
+            if level:
+                res.append(level)
+
+        return res
+                

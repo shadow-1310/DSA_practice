@@ -35,3 +35,16 @@ class Solution:
         node.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
 
         return node
+
+
+class Solution:
+    def buildTree(self, preorder, postorder):
+        if not preorder or not postorder:
+            return None
+        root = preorder[0]
+        node = TreeNode(root)
+        split = postorder.index(root)
+        node.left = self.buildTree(preorder[1:split+1], postorder[:split])
+        node.right = self.buildTree(preorder[split+1:], postorder[split+1:])
+
+        return node
