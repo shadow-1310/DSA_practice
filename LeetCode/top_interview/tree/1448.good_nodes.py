@@ -19,3 +19,25 @@ class Solution:
             return res
         
         return dfs(root, root.val)
+
+
+#I have used a different approach using global variable
+#learn the other method also
+#revision done on 04-0-2023
+class Solution:
+    def goodNodes(self, root):
+        global count
+        count = 0
+        def dfs(node, curr_max):
+            global count
+            if not node:
+                return
+            if node.val > curr_max:
+                count += 1
+                curr_max = node.val
+
+            dfs(node.left, curr_max)
+            dfs(node.right, curr_max)
+
+        dfs(root, 0)
+        return count
