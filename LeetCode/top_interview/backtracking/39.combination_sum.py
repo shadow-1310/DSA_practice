@@ -28,7 +28,7 @@ class Solution:
 # this is a revision done on 26-07-2023
 # and surprisingly this solution is faster in letcode evaluation
 class Solution:
-    def combinationSum(delf, candidates, target):
+    def combinationSum(self, candidates, target):
         res = []
         def dfs(start, curr, curr_sum):
             if curr_sum == target:
@@ -44,3 +44,28 @@ class Solution:
 
         dfs(0, [], 0)
         return res
+
+
+class Solution:
+    def combinationSum(self, candidates, target):
+        res = []
+        if len(candidates) == 0:
+            return res
+
+        def dfs(index, curr_sum, curr):
+            if curr_sum == target:
+                res.append(curr[:])
+                return
+            if index == len(candidates) or curr_sum > target:
+                return
+
+            curr.append(candidates[index])
+            dfs(index, curr_sum+candidates[index], curr)
+            curr.pop()
+            dfs(index+1, curr_sum, curr)
+
+        dfs(0, 0, [])
+        return res
+
+s = Solution()
+print(s.combinationSum([2,3,6,7], 7))

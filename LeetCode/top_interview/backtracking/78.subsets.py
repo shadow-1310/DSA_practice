@@ -36,3 +36,25 @@ class Solution:
 
         dfs(0, [])
         return res
+
+
+class Solution:
+    def subsets(self, nums):
+        res = []
+        def dfs(index, curr):
+            if index == len(nums):
+                res.append(curr[:])
+                return
+
+            dfs(index+1, curr)
+            curr.append(nums[index])
+            dfs(index+1, curr)
+            curr.pop()
+
+        dfs(0, [])
+        return res
+
+
+s = Solution()
+print(s.subsets([1,5,7,3]))
+

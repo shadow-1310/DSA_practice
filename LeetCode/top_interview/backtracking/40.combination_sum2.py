@@ -76,3 +76,71 @@ class Solution:
 
         dfs(0, [], 0)
         return res
+
+
+#this solution is wrong as it includes duplicate entry
+class Solution:
+    def combinationSum2(self, candidates, target):
+        res = []
+        def dfs(index, curr_sum, curr):
+            if curr_sum == target:
+                res.append(curr[:])
+                return
+            if curr_sum > target or index == len(candidates):
+                return
+
+            curr.append(candidates[index])
+            dfs(index+1, curr_sum+candidates[index], curr)
+            curr.pop()
+            dfs(index+1, curr_sum, curr)
+
+        dfs(0, 0, [])
+        return res
+    
+
+#problem with this approach is it doesnot take duplicate entries for sum purpose, it is wrong
+class Solution:
+    def combinationSum2(self, candidates, target):
+        res = []
+        def dfs(start, curr_sum, curr):
+            if curr_sum == target:
+                res.append(curr[:])
+                return
+            if start == len(candidates) or curr_sum > target:
+                return
+
+            while start+1 < len(candidates) and candidates[start] == candidates[start+1]:
+                start += 1
+            for i in range(start, len(candidates)):
+                curr.append(candidates[i])
+                dfs(i+1, curr_sum+candidates[i], curr)
+                curr.pop()
+
+        candidates.sort()
+        dfs(0, 0, [])
+        return res
+
+class Solution:
+    def combinationSum2(self, candidates, target):
+        candidates.sort()
+        res = []
+        def dfs(index, curr_sum, curr):
+            if curr_sum == target:
+                res.append(curr[:])
+                return
+            if index == len(candidates) or curr_sum > target:
+                return
+
+            curr.append(candidates[index])
+            dfs(index+1, curr_sum+candidates[index], curr)
+            curr.pop()
+            while index+1 < len(candidates) and candidates[index] == candidates[index+1]:
+                index += 1
+            dfs(index+1, curr_sum, curr)
+
+        dfs(0, 0, [])
+        return res
+
+
+s = Solution()
+print(s.combin([10,1,2,7,6,1,5], 8))

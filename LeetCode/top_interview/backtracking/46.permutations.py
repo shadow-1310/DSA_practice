@@ -65,7 +65,7 @@ class Solution:
             if len(curr) > len(nums):
                 return
 
-            for j in range(len(nums):
+            for j in range(len(nums)):
                 if not used[j]: 
                     curr.append(nums[j])
                     used[j] = True
@@ -74,6 +74,28 @@ class Solution:
                     curr.pop()
 
         dfs([], used)
+        return res
+
+
+#revised on 06-10-2023
+class Solution:
+    def permute(self, nums):
+        res = []
+        visited = set()
+        def dfs(curr, visited):
+            if len(curr) == len(nums):
+                res.append(curr[:])
+                return
+
+            for i in range(len(nums)):
+                if i not in visited:
+                    curr.append(nums[i])
+                    visited.add(i)
+                    dfs(curr, visited)
+                    curr.pop()
+                    visited.remove(i)
+
+        dfs([], visited)
         return res
 
 

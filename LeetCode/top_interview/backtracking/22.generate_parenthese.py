@@ -47,5 +47,34 @@ class Solution:
             curr.pop()
 
 s = Solution()
-print(s.generateParenthesis(3))
+# print(s.generateParenthesis(3))
 
+
+
+#revision done on 06-10-2023
+class Solution:
+    def generateParenthesis(self, n):
+        res = []
+        if n == 0:
+            return res
+
+        def dfs(curr, open, close):
+            if open == close == n:
+                res.append("".join(curr))
+                return res
+            if open < n:
+                curr.append("(")
+                dfs(curr, open+1, close)
+                curr.pop()
+
+            if close < open:
+                curr.append(")")
+                dfs(curr, open, close+1)
+                curr.pop()
+
+
+        dfs([], 0, 0)
+        return res
+
+s = Solution()
+print(s.generateParenthesis(3))
