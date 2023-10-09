@@ -35,6 +35,22 @@ class Solution:
         return res
 
 
+class Solution:
+    def generate(self, numRows):
+        res = []
+        for i in range(numRows):
+            level = []
+            for j in range(i+1):
+                if j == 0 or j == i:
+                    level.append(1)
+
+                else:
+                    level.append(res[i-1][j-1] + res[i-1][j])
+            res.append(level)
+
+        return res
+
+
 
 rows = 7
 print(pascal_triangle(rows))

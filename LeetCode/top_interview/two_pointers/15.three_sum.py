@@ -28,6 +28,35 @@ def three_sum(nums):
 
     return output
 
+
+#revision done on 08-10-2023
+class Solution:
+    def threeSum(self, nums):
+        res = []
+        nums.sort()
+        for i,num in enumerate(nums):
+            if i >0  and nums[i-1] == nums[i]:
+                continue
+            left = i+1
+            right = len(nums) - 1
+            while left < right :
+                curr = num + nums[left] + nums[right]
+                if curr < 0:
+                    left += 1
+                elif curr > 0:
+                    right -= 1
+                else:
+                    res.append([num, nums[left], nums[right]])
+                    left += 1
+                    while left < len(nums)  and nums[left] == nums[left-1]:
+                        left += 1
+
+        return res
+                    
+
 nums = [-1,0,1,2,-1,-4]
 nums2 = [0,0,0,0]
 print(three_sum(nums))
+s = Solution()
+print(s.threeSum(nums))
+print(s.threeSum(nums2))

@@ -69,6 +69,34 @@ class Solution:
             right -= 1
 
 
+class Solution:
+    def merge(self, nums1, m, nums2, n):
+        left = m-1
+        right = n-1
+        curr = m+n-1
+        while left >= 0 and right >= 0:
+            if nums1[left] > nums2[right]:
+                nums1[curr] = nums1[left]
+                left -= 1
+            else:
+                nums1[curr] = nums2[right]
+                right -= 1
+
+            curr -= 1
+
+        while left >= 0:
+            nums1[curr] = nums1[left]
+            curr -= 1
+            left -= 1
+
+        while right >= 0:
+            nums1[curr] = nums2[right]
+            right -= 1
+            curr -= 1
+
+
+
+
     
 
 nums1 = [0]

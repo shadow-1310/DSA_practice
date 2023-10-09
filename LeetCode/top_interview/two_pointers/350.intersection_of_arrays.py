@@ -59,6 +59,25 @@ class Solution:
                 hashmap[num] -= 1
         return res
 
+
+
+#revision done on 2023-10-08
+class Solution:
+    def intersect(self, nums1, nums2):
+        res = []
+        count = {}
+        for num in nums1:
+            if num not in count:
+                count[num] = 1
+            else:
+                count[num] += 1
+        for num in nums2:
+            if num in count and count[num] > 0:
+                res.append(num)
+                count[num] -= 1
+        return res
+
+
 nums1 = [1, 2]
 nums2 = [2, 1, 3]
 print(intersection2(nums1, nums2))

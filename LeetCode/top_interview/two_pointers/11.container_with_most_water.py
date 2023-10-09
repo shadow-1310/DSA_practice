@@ -52,5 +52,22 @@ class Solution:
         return max_water
 
 
+#revision done 08-10-2023
+class Solution:
+    def maxArea(self, height):
+        max_cap = 0
+        left = 0
+        right = len(height)
+
+        while left <= right:
+            max_cap = max(max_cap, min(height[left], height[right])*(right-left))
+            if height[left] < height[right]:
+                left += 1
+
+            else:
+                right -= 1
+
+        return max_cap
+
 height = [1,8,6,2,5,4,8,3,7]
 print(optimize_max_water(height)) 
