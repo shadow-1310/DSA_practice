@@ -51,6 +51,30 @@ class Solution:
 
         return False
 
+
+#revision done on 10-10-2023
+class Solution:
+    def canPartition(self, nums):
+        target = sum(nums)
+        if target & 1 != 0:
+            return False
+        else:
+            target = target >> 1
+        cache = {0}
+        for i in nums:
+            temp = set()
+            for n in cache:
+                res = i + n
+                if res == target:
+                    return True
+                temp.add(res)
+                temp.add(n)
+            cache = temp
+
+        return False
+
+
 nums = [1,5,11,5]
+# nums = [1,2,3,5]
 s =Solution()
 print(s.canPartition(nums))
