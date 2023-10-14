@@ -85,7 +85,31 @@ class Solution:
                         return res
 
         return res
-        
+
+
+#this revision was done on 14-10-2023
+class Solution:
+    def topKFrequent(self, nums, k):
+        res = []
+        if k > len(nums):
+            return res
+
+        count_map = {}
+        for num in nums:
+            if num in count_map:
+                count_map[num] += 1
+            else:
+                count_map[num] = 1
+
+        bucket_list = [ [] for i in range(len(nums)+1)]
+        for key in count_map:
+            bucket_list[count_map[key]].append(key)
+
+        for i in range(len(bucket_list)-1, -1, -1):
+            for num in bucket_list[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
 
 
 nums = [1,1,1,2,2,3]
@@ -98,6 +122,8 @@ nums3 = [-1, -1]
 k3 = 1
 
 
+s = Solution()
+print(s.topKFrequent(nums, k))
 print(top_frequent(nums, k))
 print(top_frequent(nums2, k2))
 print(top_frequent(nums3, k3))

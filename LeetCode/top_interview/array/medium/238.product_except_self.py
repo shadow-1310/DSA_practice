@@ -28,6 +28,24 @@ class Solution:
 
         return product
 
+#revised on 14-10-2023
+#here the commented line is the mistake I made
+class Solution:
+    def productExceptSelf(self, nums):
+        product = [1]*len(nums)
+        for i in range(1,len(nums)):
+            product[i] = product[i-1] * nums[i-1]
+
+        res = 1
+        for i in range(len(nums)-2, -1, -1):
+            res *= nums[i+1]
+            # product[i] = product[i-1] * res
+            product[i] *= res
+
+        return product
+
 
 nums = [1,2,3,4]
+s = Solution()
+print(s.productExceptSelf(nums))
 print(find_product(nums))

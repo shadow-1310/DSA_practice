@@ -43,4 +43,26 @@ class Solution:
             n = square
 
 
+#this revision was done on 14-10-2023
+class Solution:
+    def isHappy(self, n):
+        if n == 1:
+            return True
+        visited = set()
+        while n > 1:
+            if n in visited:
+                return False
+            visited.add(n)
+            curr_sum = 0
+            while n > 0:
+                curr_sum += (n % 10)**2
+                n = n // 10
+
+            n = curr_sum
+            if n == 1:
+                return True
+
+
+
 print(happy_number(19))
+print(happy_number(2))

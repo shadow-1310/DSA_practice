@@ -34,6 +34,15 @@ class Solution:
             res ^= num
 
         return res
+
+
+class Solution:
+    def singleNumber(self, nums):
+        res = 0
+        for n in nums:
+            res ^= n
+
+        return res
         
 nums = [4,1,2,1,2]
 print(single_number(nums))
