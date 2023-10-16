@@ -78,6 +78,20 @@ class Solution:
 
         return res
 
+#this revision waas done on 16-10-2023
+#mistake I did was checked the return condition before appending
+class Solution:
+    def kClosest(self, points, k):
+        min_heap = []
+        res = []
+        for x1,y1 in points:
+            heapq.heappush(min_heap, (x1**2+y1**2, (x1,y1)))
+        while min_heap:
+            _, point= heapq.heappop(min_heap)
+            res.append([point[0],point[1]])
+            if len(res) == k:
+                return res
+
 
 points1 = [[1,3],[-2,2]]
 k1 = 1
@@ -88,4 +102,6 @@ k2 = 2
 points3 = [[1,3],[-2,2],[2,-2]]
 k3 = 2
 s = Solution()
+print(s.kClosest(points1, k1))
+print(s.kClosest(points2, k2))
 print(s.kClosest(points3, k3))
