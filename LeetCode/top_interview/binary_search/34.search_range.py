@@ -120,51 +120,51 @@ def find_range(nums, target):
 
 #iit was done on 2023-09-22
 #this is a very wrong approach and 
-class Solution:
-    def searchRange(self, nums, target):
-        #it is a helper function
-        def search_dir(l, r, right:bool):
-            if right:
-                while l <= r:
-                    m = (l+r) // 2
-                    if nums[m] == target:
-                        return m
-                    if m + 1 < len(nums) and nums[m] == nums[m+1] == target:
-                        if m+1 == len(nums)-1:
-                            return m+1
-                        return search_dir(l = m+1, r, right=True)
-                    else:
-                        return search_dir(l, r = m-1, right =True)
+#class Solution:
+#    def searchRange(self, nums, target):
+#        #it is a helper function
+#        def search_dir(l, r, right:bool):
+#            if right:
+#                while l <= r:
+#                    m = (l+r) // 2
+#                    if nums[m] == target:
+#                        return m
+#                    if m + 1 < len(nums) and nums[m] == nums[m+1] == target:
+#                        if m+1 == len(nums)-1:
+#                            return m+1
+#                        return search_dir(l = m+1, r, right=True)
+#                    else:
+#                        return search_dir(l, r = m-1, right =True)
 
-            else:
-                while l <= r:
-                    m = (l+r) // 2
-                    if nums[m] == target:
-                        return m
-                    if m - 1 > 0 and nums[m] == nums[m-1] == target:
-                        if m-1 == 0:
-                            return m-1
-                        return search_dir(l, r=m-1, right=False)
-                    else:
-                        return search_dir(l = m+1, r, right =False)
+#            else:
+#                while l <= r:
+#                    m = (l+r) // 2
+#                    if nums[m] == target:
+#                        return m
+#                    if m - 1 > 0 and nums[m] == nums[m-1] == target:
+#                        if m-1 == 0:
+#                            return m-1
+#                        return search_dir(l, r=m-1, right=False)
+#                    else:
+#                        return search_dir(l = m+1, r, right =False)
 
 
-        left = 0
-        right = len(nums)-1
+#        left = 0
+#        right = len(nums)-1
 
-        while left <= right:
-            mid = (left+right) // 2
-            if nums[mid] == target:
-                left_lim = search_dir(0, mid-1, right=False)
-                right_lim = search_dir(mid+1, len(nums)-1, right=True)
-                return  [left_lim, right_lim]
-            elif nums[mid] < target:
-                left = mid + 1
+#        while left <= right:
+#            mid = (left+right) // 2
+#            if nums[mid] == target:
+#                left_lim = search_dir(0, mid-1, right=False)
+#                right_lim = search_dir(mid+1, len(nums)-1, right=True)
+#                return  [left_lim, right_lim]
+#            elif nums[mid] < target:
+#                left = mid + 1
 
-            else:
-                right = mid - 1
+#            else:
+#                right = mid - 1
         
-        return [-1,-1]
+#        return [-1,-1]
 
 
 class Solution:
@@ -197,11 +197,39 @@ class Solution:
 
         return [left_lim, right_lim]
 
+
+#revision done on 19-10-2023
+class Solution:
+    def searchRange(self, nums, target):
+        def search(left):
+            l = 0
+            r = len(nums)-1
+            res = -1
+            while l <= r:
+                mid = (l+r) >> 1
+                if nums[mid] > target:
+                    r = mid - 1
+                elif nums[mid] < target:
+                    l = mid + 1
+                else:
+                    res = mid
+                    if left:
+                        r = mid - 1
+                    else:
+                        l = mid+1
+            return res
+
+        return [search(True), search(False)]
+
+
+
 nums = [5,7,7,8,8,8]
 target = 8
 
 nums2 = []
 target2 = 1
 
-print(find_range(nums, target))
+s = Solution()
+print(s.searchRange(nums, target))
+# print(find_range(nums, target))
 # print(find_range(nums2, target2))
