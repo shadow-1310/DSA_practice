@@ -93,8 +93,27 @@ class Solution:
                 return mid
 
 
+#revision done on 20-10-2023
+class Solution:
+    def findPeakElement(self, nums):
+        l = 0
+        n = len(nums)
+        r = n-1
+        while l <= r:
+            mid = (l+r) >> 1
+            if mid > 0 and nums[mid] < nums[mid-1]:
+                r = mid - 1
+            elif mid < n-1 and nums[mid] < nums[mid+1]:
+                l = mid+1
+            else: 
+                return mid
+
+
 nums = [1,2,1,3,5,6,4]
 nums1 = [1,2,3,1]
 
 print(find_peak_binary(nums))
 print(find_peak_binary(nums1))
+s = Solution()
+print(s.findPeakElement(nums))
+print(s.findPeakElement(nums1))

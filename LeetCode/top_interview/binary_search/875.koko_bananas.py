@@ -57,6 +57,28 @@ class Solution:
 
         return min_rate
 
+import math
+class Solution:
+    def minEatingSpeed(self, piles, h):
+        max_spd = max(piles)
+        l = 1
+        r = max_spd
+        res = max_spd
+        if len(piles) == h:
+            return max_spd
+
+        while l <= r:
+            mid = (l+r) >> 1
+            curr = 0
+            for p in piles:
+                curr += math.ceil(p/mid)
+            if curr > h:
+                l = mid + 1
+            else:
+                res = min(res, mid)
+                r = mid-1
+
+        return res
 
 
 
@@ -69,6 +91,7 @@ h2 = 5
 piles3 = [30,11,23,4,20]
 h3 = 6
 
-print(find_rate(piles, h))
-print(find_rate(piles2, h2))
-print(find_rate(piles3, h3))
+s = Solution()
+print(s.minEatingSpeed(piles, h))
+print(s.minEatingSpeed(piles2, h2))
+print(s.minEatingSpeed(piles3, h3))

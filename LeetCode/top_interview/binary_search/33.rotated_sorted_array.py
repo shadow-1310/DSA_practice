@@ -86,6 +86,27 @@ class Solution:
         return -1
 
 
+#revision done on 19-10-2023
+class Solution:
+    def search(self, nums, target):
+        l = 0
+        r = len(nums) - 1
+        while l <= r:
+            mid = (l+r) >> 1
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] > nums[-1]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid +1
+                else:
+                    r = mid - 1
+
+            else:
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+        return -1
 
 
 
@@ -98,6 +119,10 @@ target2 = 0
 nums3 = [4,5,6,7,0,1,2, 3]
 target3 = 3
 
-print(rotated_array(nums, target))
-print(rotated_array(nums2, target2))
-print(rotated_array(nums3, target3))
+# print(rotated_array(nums, target))
+# print(rotated_array(nums2, target2))
+# print(rotated_array(nums3, target3))
+s = Solution()
+print(s.search(nums3, target3))
+print(s.search(nums2, target2))
+print(s.search(nums, target))
