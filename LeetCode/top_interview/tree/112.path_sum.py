@@ -39,3 +39,20 @@ class Solution:
             return dfs(node.left, curr_sum) or dfs(node.right, curr_sum)
         
         return dfs(root, 0)
+
+
+#revision done on 24-10-2023
+class Solution:
+    def hasPathSum(self, root, targetSum):
+        def dfs(node, curr):
+            if curr > targetSum:
+                return False
+            if not node:
+                return False
+            if not node.left and not node.right and curr+node.val == targetSum:
+                return True
+            if dfs(node.left, curr+node.val) or dfs(node.right, curr+node.val):
+                return True
+            
+            return False
+        return dfs(root, 0)
