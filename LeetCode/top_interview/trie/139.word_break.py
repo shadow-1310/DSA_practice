@@ -42,3 +42,23 @@ class Solution:
             dic.add_word(word)
 
         return dic.search(s)
+
+
+#this is a correct solution using DP
+#done on 26-10-2023
+class Solution:
+    def wordBreak(self, s, wordDict):
+        n = len(s)
+        cache = [False] * (n+1)
+        cache[n] = True
+
+        for i in range(n-1, -1, -1):
+            for word in wordDict:
+                w = len(word)
+                if i + w <= n and s[i:i+w] == word:
+                    cache[i] = cache[i+w]
+
+                if cache[i]:
+                    break
+
+        return cache[0]

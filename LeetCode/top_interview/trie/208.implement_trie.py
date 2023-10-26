@@ -43,6 +43,40 @@ class Trie:
         return True
 
 
+#this is a revision done on 26-10-2023
+class TrieNode:
+    def __init__(self):
+        self.neighbours = {}
+        self.end = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curr = self.root
+        for char in word:
+            if char not in curr.neighbours:
+                curr.neighbours[char] = TrieNode()
+            curr = curr.neighbours[char]
+        curr.end = True
+
+    def search(self, word):
+        curr = self.root
+        for char in word:
+            if char not in curr.neighbours:
+                return False
+            curr = curr.neighbours[char]
+        return curr.end
+
+    def startsWith(self, prefix):
+        curr = self.root
+        for char in prefix:
+            if char not in curr.neighbours:
+                return False
+            curr = curr.neighbours[char]
+        return True
+
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
 # obj.insert(word)
