@@ -102,6 +102,34 @@ class Solution:
 
         return res
             
+#this is a revision 
+#done on 27-10-2023
+class Solution:
+    def longestPalindrome(self, s):
+        res = ''
+        max_count = 0
+        n = len(s)
+        for i in range(n):
+            l = i
+            r = i
+            while l >=0 and r < n and s[l] == s[r]:
+                if r-l+1 > max_count:
+                    max_count = r-l+1
+                    res = s[l:r+1]
+                l -= 1
+                r += 1
+
+            l = i
+            r = i+1
+            while l >= 0 and r < n and s[l] == s[r]:
+                if r-l+1 > max_count:
+                    max_count = r-l+1
+                    res = s[l:r+1]
+                l -= 1
+                r += 1
+
+        return res
+
 
 s = Solution()
 s2 = "cbbd"

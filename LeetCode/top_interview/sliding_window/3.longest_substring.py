@@ -98,12 +98,36 @@ class Solution:
         return max_len
 
 
-s = "abcabcbb"
+#this is a revision done on 27-10-2023
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        n = len(s)
+        if n == 1 or n == 0:
+            return n
+        l = 0
+        r = 1
+        seen = {}
+        seen[s[l]] = 0
+        res = 0
+        while r < n:
+            if s[r] in seen and seen[s[r]] >= l:
+                l = seen[s[r]] + 1
+            seen[s[r]] = r
+            res = max(res, r-l+1)
+            r += 1
+
+        return res
+
+
+s1 = "abcabcbb"
 s2 = "bbbbb"
 s3 = "pwwkew"
 s4 = "abba"
+s5 = ""
 
-print(find_longest(s))
-print(find_longest(s2))
-print(find_longest(s3))
-print(find_longest(s4))
+s = Solution()
+print(s.lengthOfLongestSubstring(s1))
+print(s.lengthOfLongestSubstring(s2))
+print(s.lengthOfLongestSubstring(s3))
+print(s.lengthOfLongestSubstring(s4))
+print(s.lengthOfLongestSubstring(s5))
