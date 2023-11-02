@@ -119,6 +119,23 @@ class Solution:
         return res
 
 
+#revision done on 01-11-2023
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        l = 0
+        r = 0
+        n = len(s)
+        seen = {}
+        res = 0
+        while r < n:
+            if s[r] in seen and l <= seen[s[r]]:
+                l = seen[s[r]] + 1
+            res = max(res, r-l+1)
+            seen[s[r]] = r
+            r += 1
+        return res
+                
+
 s1 = "abcabcbb"
 s2 = "bbbbb"
 s3 = "pwwkew"

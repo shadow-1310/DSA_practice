@@ -124,6 +124,39 @@ class Solution:
         return False
 
 
+#revision done on 2023-11-01
+class Solution:
+    def checkInclusion(self, s1, s2):
+        n1 = len(s1)
+        n2 = len(s2)
+        if n2 < n1:
+            return False
+        curr = [0]*26
+        target = [0]*26
+
+        for i in range(n1):
+            idx1 = ord(s1[i]) - ord('a')
+            idx2 = ord(s2[i]) - ord('a')
+
+            target[idx1] += 1
+            curr[idx2] += 1
+
+        if target == curr:
+            return True
+        
+        l = 0
+        for r in range(n1, n2):
+            add = ord(s2[r]) - ord('a')
+            rem = ord(s2[l]) - ord('a')
+
+            curr[add] += 1
+            curr[rem] -= 1
+            if curr == target:
+                return True
+
+            l += 1
+
+        return False
 
 
 
@@ -140,8 +173,12 @@ s6 = 'dcda'
 s7 = "trinitrophenylmethylnitramine"
 s8 = "dinitrophenylhydrazinetrinitrophenylmethylnitramine"
 
-# print(check_inclusion(s1, s2))
-# print(check_inclusion(s3, s4))
-# print(check_inclusion(s5, s6))
+s9 = "ab"
+s10 = "a"
+
+print(check_inclusion(s1, s2))
+print(check_inclusion(s3, s4))
+print(check_inclusion(s5, s6))
 print(check_inclusion(s7, s8))
-# print(checkInclusion(s7, s8))
+print(checkInclusion(s7, s8))
+print(checkInclusion(s9, s10))

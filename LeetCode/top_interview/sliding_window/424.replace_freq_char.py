@@ -69,6 +69,41 @@ class Solution:
 
         return maxx
 
+
+#this revision was done on 01-11-2023
+class Solution:
+    def characterReplacement(self, s, k):
+        def check_max(curr_map):
+            res = 0
+            for key in curr_map:
+                res = max(res, curr_map[key])
+            return res
+
+        l = 0
+        r = 0
+        n = len(s)
+        seen = {}
+        res = 0
+        while l <= r and r < n:
+            if s[r] in seen:
+                seen[s[r]] += 1
+            else:
+                seen[s[r]] = 1
+
+            max_freq = check_max(seen)
+            if r-l+1 - max_freq <= k:
+                res = max(res, r-l+1)
+            else:
+                seen[s[l]] -= 1
+                l += 1
+
+            r += 1
+
+        return res
+
+
+
+
 s = "ABAB"
 k = 2
 
