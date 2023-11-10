@@ -15,6 +15,23 @@ class Solution:
         return res
 
 
+#revision done on 10-11-2023
+class Solution:
+    def subarraySum(self, nums, k):
+        prefix_sum = defaultdict(lambda:0)
+        prefix_sum[0] = 1
+        curr = 0
+        res = 0
+        for num in nums:
+            curr += num
+            diff = curr - k
+            if diff in prefix_sum:
+                res += prefix_sum[diff]
+            prefix_sum[curr] += 1
+
+        return res
+
+
 nums = [1,2,3]; k = 3
 s = Solution()
 print(s.subarraySum(nums,k))
