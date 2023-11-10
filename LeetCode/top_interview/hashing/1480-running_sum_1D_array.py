@@ -1,3 +1,4 @@
+#it is done on 10-11-2023
 class Solution:
     def runningSum(self, nums):
         n = len(nums)
