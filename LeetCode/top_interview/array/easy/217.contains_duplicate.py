@@ -13,10 +13,19 @@ def contains_duplicate(nums):
     return False
 
 
-def check_duplicate(nums):
-    return len(set(nums)) < len(nums)
+#revision done on 2023-11-23
+class Solution:
+    def containsDuplicate(self, nums):
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return True
+            seen.add(num)
+        return False
 
 
 nums = [1,1,1,3,3,4,3,2,4,2]
-print(contains_duplicate(nums))
-print(check_duplicate(nums))
+s = Solution()
+print(s.containsDuplicate(nums))
+# print(contains_duplicate(nums))
+# print(check_duplicate(nums))

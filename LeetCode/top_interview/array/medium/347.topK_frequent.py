@@ -112,6 +112,38 @@ class Solution:
                     return res
 
 
+#revision done on 2023-11-23
+class Solution:
+    def topKFrequent(self, nums, k):
+        dict = {}
+        max_freq = 0
+        res = []
+        n = len(nums)
+        if k > n:
+            return res
+        for num in nums:
+            if num in dict:
+                dict[num] += 1
+            else:
+                dict[num] = 1
+            max_freq = max(max_freq, dict[num])
+
+        freq_map = [[]] * (max_freq+1)
+        for key in dict:
+            if freq_map[dict[key]]:
+                freq_map[dict[key]].append(key)
+            else:
+                freq_map[dict[key]] = [key]
+
+        count = 0
+        for i in range(len(freq_map)-1, 0, -1):
+            num = freq_map[i]
+            for n in freq_map[i]:
+                res.append(n)
+                count += 1
+                if count == k:
+                    return res
+
 nums = [1,1,1,2,2,3]
 k = 2
 
@@ -124,6 +156,5 @@ k3 = 1
 
 s = Solution()
 print(s.topKFrequent(nums, k))
-print(top_frequent(nums, k))
-print(top_frequent(nums2, k2))
-print(top_frequent(nums3, k3))
+print(s.topKFrequent(nums2, k2))
+print(s.topKFrequent(nums3, k3))

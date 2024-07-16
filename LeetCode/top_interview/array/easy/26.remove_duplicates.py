@@ -37,5 +37,45 @@ class Solution:
 
         return tot - duplicates
 
+
+#done on 2023-11-23
+class Solution:
+    def removeDuplicates(self, nums):
+        l = 0
+        r = 0
+        n = len(nums)
+        seen = set()
+        while r < n:
+            # while 0 < r < n and nums[r] == nums[l]:
+            nums[l], nums[r] = nums[r], nums[l]
+            seen.add(nums[l])
+            l += 1
+            r += 1
+            while 0<r<n and nums[r] in seen:
+                r += 1
+        # print(nums)
+        return l
+
+# I slightly optimized previous approach for space complexity
+# here no extra set is used
+class Solution:
+    def removeDuplicates(self, nums):
+        l = 0
+        r = 0
+        n = len(nums)
+        while r < n:
+            nums[l] = nums[r]
+            l += 1
+            r += 1
+            while 0<r<n and nums[r] == nums[l-1]:
+                r += 1
+        print(nums)
+        return l
+
 nums = [0,0,1,1,1,2,2,3,3,4]
-print(remove_duplicates(nums))
+s = Solution()
+print(s.removeDuplicates(nums))
+nums = [1,1,2]
+print(s.removeDuplicates(nums))
+nums = [1,1]
+print(s.removeDuplicates(nums))

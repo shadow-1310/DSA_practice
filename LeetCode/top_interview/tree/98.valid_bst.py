@@ -83,3 +83,18 @@ class Solution:
             return q_self and q_left and q_right
 
         return dfs(root, float('-inf'), float('inf'))
+
+#revision done on 20-11-2023
+class Solution:
+    def isValidBST(self, root):
+        def is_valid(node, ll, ul):
+            if not node:
+                return True
+            curr_val = node.val
+            
+            q_self = curr_val < ul and curr_val > ll
+            q_left = True if not node.left else is_valid(node.left, ll, curr_val)
+            q_right = True if not node.right else is_valid(node.right, curr_val, ul)
+
+            return q_left and q_right and q_self
+        return is_valid(root, float('-inf'), float('inf'))

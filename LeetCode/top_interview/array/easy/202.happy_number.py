@@ -63,6 +63,26 @@ class Solution:
                 return True
 
 
+#revision done on 2023-11-16
+class Solution:
+    def isHappy(self, n):
+        seen = set()
+        while n:
+            if n == 1:
+                return True
+            if n in seen:
+                return False
+            seen.add(n)
+            rem = n
+            n = 0
+            while rem:
+                dig = rem % 10
+                rem = rem // 10
+                n += dig ** 2
 
-print(happy_number(19))
-print(happy_number(2))
+
+
+# print(happy_number(19))
+# print(happy_number(2))
+s  =Solution()
+print(s.isHappy(19))

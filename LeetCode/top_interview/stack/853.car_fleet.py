@@ -29,9 +29,21 @@ class Solution:
         return len(stack)
 
 
+class Solution:
+    def carFleet(self, target, position, speed):
+        stack = []
+        comb = list(zip(position, speed))
+        comb.sort(reverse=True))
+        for pos, sped in comb:
+            time = (target-pos) / spd
+
+
 
 target = 12
 position = [10,8,0,5,3]
 speed = [2,4,1,1,3]
 
-print(car_fleet(target, position, speed))
+s = Solution()
+print(s.carFleet(target, position, speed))
+
+# print(car_fleet(target, position, speed))

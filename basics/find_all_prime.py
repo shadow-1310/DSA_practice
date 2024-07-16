@@ -19,7 +19,8 @@ def find_primes(n):
     return sum(primes) - 2 # subtracting 2 is neccessary because first two indexes are true and they are for 0 and 1
 
 
-n = 1000000
+n = 1_000_000_000
+# n = 1000
 n2 = 30
 print(find_primes(n))
 # print(find_primes(n2))

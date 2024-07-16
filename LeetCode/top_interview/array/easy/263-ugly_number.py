@@ -42,6 +42,21 @@ class Solution:
         return n == 1
 
 
+#revision done on 2023-11-23
+class Solution:
+    def isUgly(self, n):
+        if n == 0:
+            return False
+        while n & 1 == 0:
+            n = n >> 1
+        while n % 3 == 0:
+            n = n / 3
+        while n % 5 == 0:
+            n = n / 5
+        
+        return True if n==1 else False
+
+
 
 n = 121
 n2 = 30

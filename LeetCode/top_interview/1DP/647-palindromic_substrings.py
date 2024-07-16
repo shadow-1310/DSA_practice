@@ -77,7 +77,33 @@ class Solution:
         return count
 
 
+#this revision done on 21-11-2023
+class Solution:
+    def countSubstrings(self, s):
+        res = 0
+        n = len(s)
+        for i in range(n):
+            l = i
+            r = i
+            while l >= 0 and r < n:
+                if s[l] != s[r]:
+                    break
+                res += 1
+                l -= 1
+                r += 1
+
+            l = i
+            r = i+1
+            while l >= 0 and r < n:
+                if s[l] != s[r]:
+                    break
+                res += 1
+                l -= 1
+                r += 1
+
+        return res
 
 s = Solution()
 print(s.countSubstrings('abc'))
 print(s.countSubstrings('aaa'))
+print(s.countSubstrings('fdsklf'))

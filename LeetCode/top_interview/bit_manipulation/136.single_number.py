@@ -43,6 +43,14 @@ class Solution:
             res ^= n
 
         return res
+
+#revision done on 2023-11-23
+class Solution:
+    def singleNumber(self, nums):
+        res = 0
+        for num in nums:
+            res ^= num
+        return res
         
 nums = [4,1,2,1,2]
 print(single_number(nums))

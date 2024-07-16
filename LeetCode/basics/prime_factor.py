@@ -1,3 +1,4 @@
+import pandas
 def prime_factor(N:int)->list:
     divisor = 2
     factors = []
@@ -10,5 +11,5 @@ def prime_factor(N:int)->list:
 
     return sorted(list(set(factors)))
 
-n = 33
+n = 1_000_054
 print(prime_factor(n))
